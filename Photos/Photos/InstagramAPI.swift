@@ -9,6 +9,7 @@
 import Foundation
 
 class InstagramAPI {
+    
     /* Connects with the Instagram API and pulls resources from the server. */
     func loadPhotos(completion: (([Photo]) -> Void)!) {
         /* 
@@ -23,8 +24,8 @@ class InstagramAPI {
          *       d. Wait for completion of Photos array
          */
         // FILL ME IN
-        var url: NSURL
-
+        let url = Utils.getPopularURL()
+        
         let task = NSURLSession.sharedSession().dataTaskWithURL(url) {
             (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             if error == nil {
@@ -32,9 +33,12 @@ class InstagramAPI {
                 var photos: [Photo]!
                 do {
                     let feedDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                    
                     // FILL ME IN, REMEMBER TO USE FORCED DOWNCASTING
-                    
-                    
+                    let dictionaryArray = feedDictionary.valueForKey("data") as! NSArray
+                    for photoData in dictionaryArray {
+                        photos.append(Photo(data: photoData as! NSDictionary))
+                    }
                     // DO NOT CHANGE BELOW
                     let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
                     dispatch_async(dispatch_get_global_queue(priority, 0)) {

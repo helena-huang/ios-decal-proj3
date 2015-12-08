@@ -18,13 +18,21 @@ class PhotosCollectionViewController: UICollectionViewController {
         api.loadPhotos(didLoadPhotos)
         // FILL ME IN
     }
-
+    
     /* 
      * IMPLEMENT ANY COLLECTION VIEW DELEGATE METHODS YOU FIND NECESSARY
      * Examples include cellForItemAtIndexPath, numberOfSections, etc.
      */
     
-    /* Creates a session from a photo's url to download data to instantiate a UIImage. 
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+    }
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    /* Creates a session from a photo's url to download data to instantiate a UIImage.
        It then sets this as the imageView's image. */
     func loadImageForCell(photo: Photo, imageView: UIImageView) {
         
